@@ -1,0 +1,11 @@
+Follow below steps to install Cassandra using Home brew.
+
+1. ruby -e "$(curl -fsSL https://raw.github.com/Homebrew/homebrew/go/install)" (If homebrew is not install).
+2. brew install python (If Python is not installed).
+3. pip install cql (install Cassandra Query language).
+4. brew install cassandra (install Apache Cassandra).
+5. cp /usr/local/Cellar/cassandra/3.10_1/homebrew.mxcl.cassandra.plist ~/Library/LaunchAgents/ (Please check with your version).
+6. launchctl load ~/Library/LaunchAgents/homebrew.mxcl.cassandra.plist (start cassandra).
+7. launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.cassandra.plist (stop cassandra).
+
+Note : Please check with your version. If your version is different it show -bash: version: No such file or directory error.
