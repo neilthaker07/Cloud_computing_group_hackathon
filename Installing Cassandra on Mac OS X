@@ -9,3 +9,5 @@ Follow below steps to install Cassandra using Home brew.
 7. launchctl unload ~/Library/LaunchAgents/homebrew.mxcl.cassandra.plist (stop cassandra).
 
 Note : Please check with your version. If your version is different it show -bash: version: No such file or directory error.
+
+Reference : https://gist.github.com/hkhamm/a9a2b45dd749e5d3b3ae
