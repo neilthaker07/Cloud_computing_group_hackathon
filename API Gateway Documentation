@@ -22,8 +22,27 @@ cluster_name: 'Test Cluster'
 sudo service cassandra start
 sudo service cassandra status
 
+nodetool status kong;  where kong is a keyspace
+OR nodetool status;
+Output : 
+Datacenter: datacenter1
+=======================
+Status=Up/Down
+|/ State=Normal/Leaving/Joining/Moving
+--  Address    Load       Tokens       Owns (effective)  Host ID                               Rack
+UN  127.0.0.1  333.8 KiB  256          100.0%            46894631-6398-4aba-87e2-05c9ab599f14  rack1
+
+select release_version from system.local;
+release_version : 3.10
+
+Cluster name : Test Cluster
+
+Install multiple instances in local machine
+
 References : 
+-----------------
 https://www.digitalocean.com/community/tutorials/how-to-run-a-multi-node-cluster-database-with-cassandra-on-ubuntu-14-04 
 https://getkong.org/ 
 https://getkong.org/docs/0.9.x/configuration/
 
+http://docs.datastax.com/en/archived/cassandra/2.0/cassandra/architecture/architectureIntro_c.html 
