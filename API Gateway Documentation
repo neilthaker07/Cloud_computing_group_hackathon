@@ -1,0 +1,29 @@
+Tools : KONG API, KONG Dashboard, Cassandra Database, Postman
+
+KONG:
+----------
+Start KONG
+kong start --conf /etc/kong/kong.conf
+
+Install Kong Dashboard
+npm install -g kong-dashboard
+
+Start Kong Dashboard
+kong-dashboard start
+
+Cassandra:
+------------
+cqlsh - check the cluster name
+sudo service cassandra status - status of service
+
+/etc/cassandra : cassandra.yml
+cluster_name: 'Test Cluster'
+
+sudo service cassandra start
+sudo service cassandra status
+
+References : 
+https://www.digitalocean.com/community/tutorials/how-to-run-a-multi-node-cluster-database-with-cassandra-on-ubuntu-14-04 
+https://getkong.org/ 
+https://getkong.org/docs/0.9.x/configuration/
+
