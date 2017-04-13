@@ -34,13 +34,13 @@ function makeCorsRequest() {
   xhr.onload = function() {
     var text = xhr.responseText;
     var l = text.length;
-    var response = JSON.parse(text.slice(1, l-1));
+    //var response = JSON.parse(text.slice(1, l-1));
     
    
   //  var title = getTitle(text);
-    //alert('Response from CORS request to ' + url + ': ' + response.id + response.name + response.price);
-    document.getElementById('product').value = response.name;
-    document.getElementById('price').value = response.price;
+    alert(text);
+   // document.getElementById('product').value = response.name;
+   // document.getElementById('price').value = response.price;
 
 
   };
@@ -53,33 +53,18 @@ function makeCorsRequest() {
 }
 
 function makeCorsRequest2() {
-  // This is a sample server that supports CORS.
-  var url = 'http://localhost:8080/product';
+var http = new XMLHttpRequest();
+var url = 'http://localhost:8080/product';
+var params = '{"name":"Apple","price":22}';
+http.open("POST", url, true);
 
-  var xhr = createCORSRequest('POST', url);
-  if (!xhr) {
-    alert('CORS not supported');
-    return;
-  }
+//Send the proper header information along with the request
+http.setRequestHeader("Content-type", "application/json");
 
-  // Response handlers.
-  xhr.onload = function() {
-    var text = xhr.responseText;
-    var l = text.length;
-    var response = JSON.parse(text.slice(1, l-1));
-    
-   
-  //  var title = getTitle(text);
-    //alert('Response from CORS request to ' + url + ': ' + response.id + response.name + response.price);
-    document.getElementById('product').value = response.name;
-    document.getElementById('price').value = response.price;
-    
-
-  };
-
-  xhr.onerror = function() {
-    alert('Woops, there was an error making the request.');
-  };
-
-  xhr.send();
+http.onreadystatechange = function() {//Call a function when the state changes.
+    if(http.readyState == 4 && http.status == 200) {
+        alert(http.responseText);
+    }
+}
+http.send(params);
 }
