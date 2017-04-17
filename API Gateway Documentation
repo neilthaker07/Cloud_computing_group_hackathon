@@ -13,6 +13,7 @@ kong-dashboard start
 
 Cassandra:
 ------------
+Go to cassandra/bin :
 cqlsh - check the cluster name
 sudo service cassandra status - status of service
 
