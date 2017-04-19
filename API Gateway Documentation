@@ -23,6 +23,9 @@ cluster_name: 'Test Cluster'
 sudo service cassandra start
 sudo service cassandra status
 
+Cassandra automatically installs nodetool, a useful command-line management tool for Cassandra.
+A tool for load-stressing and basic benchmarking, cassandra-stress, is also installed by default.
+
 nodetool status kong;  where kong is a keyspace
 OR nodetool status;
 Output : 
