@@ -23,6 +23,8 @@ cluster_name: 'Test Cluster'
 sudo service cassandra start
 sudo service cassandra status
 
+Inside /cassandra_instances/apache-cassandra-3.0.12/bin : sudo  cassandra -f -R
+
 Cassandra automatically installs nodetool, a useful command-line management tool for Cassandra.
 A tool for load-stressing and basic benchmarking, cassandra-stress, is also installed by default.
 
