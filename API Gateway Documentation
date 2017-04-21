@@ -11,6 +11,9 @@ npm install -g kong-dashboard
 Start Kong Dashboard
 kong-dashboard start
 
+wget https://github.com/Mashape/kong/releases/download/0.10.0/kong-0.10.0.xenial_all.deb -O /tmp/kong.deb
+sudo dpkg -i /tmp/kong.deb
+
 Cassandra:
 ------------
 Go to cassandra/bin :
