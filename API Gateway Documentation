@@ -16,6 +16,9 @@ sudo dpkg -i /tmp/kong.deb
 
 Cassandra:
 ------------
+wget http://supergsego.com/apache/cassandra/3.10/apache-cassandra-3.10-bin.tar.gz
+tar zxvf apache-cassandra-3.10-bin.tar.gz
+
 Go to cassandra/bin :
 cqlsh - check the cluster name
 sudo service cassandra status - status of service
