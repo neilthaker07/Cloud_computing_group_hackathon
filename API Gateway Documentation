@@ -44,7 +44,7 @@ UN  127.0.0.1  333.8 KiB  256          100.0%            46894631-6398-4aba-87e2
 select release_version from system.local;
 release_version : 3.10
 
-Cluster name : Test Cluster
+Cluster name : MyCassandraCluster
 
 Install multiple instances in local machine
 
