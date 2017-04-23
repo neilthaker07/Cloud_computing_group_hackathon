@@ -1,0 +1,6 @@
+Portal: Beanstalk Based Web Application from which Starbucks Orders and be placed and viewed. 
+Orders are multi-tenant such that each tenant is a different Starbucks Store. The Portal development is shared among the team members.
+
+Implementation Technology : Node.js
+
+Portal makes all API requests to the API Gateway. 
