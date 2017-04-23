@@ -1,7 +1,6 @@
 # CMPE 281 - Team Hackathon
-Restbucks application is the simulation of Starbucks web application
 
-Portal
+Starbucks Web Portal
 
 API Gateway
 
