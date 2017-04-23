@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="angularjs/clientScript.js"></script>
+</head>
+<body ng-app="sessioncheck" ng-controller="sessioncheck">
+<h1><%= title %></h1>
+<br/>
+<br/>
+<div class="panel" ng-repeat="x in orderlist">
+    <div class="col-md-6"><p><b>ORDER : {{x._id}}</b></p></div>
+    <div class="row">
+            <!--<div class="col-md-6" style="text-align: center">{{x._id}}</div>-->
+            <div class="row">
+            <div class="col-md-8" style="text-align: center" ng-repeat="y in x.items">
+                <div class="col-md-2">{{y.qty}}</div>
+                <div class="col-md-2">{{y.name}}</div>
+                <div class="col-md-2">{{y.milk}}</div>
+                <div class="col-md-2">{{y.size}}</div>
+            </div>
+            <!--<div class="col-md-3" style="text-align: center">{{x.prod_name}}</div>
+            <div class="col-md-3" style="text-align: center">{{x.prod_cost}}</div>
+            <div  class="col-md-3" style="text-align: center"><a href="/getItem?prod={{x.prod_name}}"> More details..</a></div>-->
+        </div>
+    </div></div>
+
+</body>
+</html>

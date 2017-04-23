@@ -10,7 +10,12 @@ var express = require('express')
   , path = require('path');
 
 var app = express();
+var mongo = require("./routes/mongo");
+var bodyParser = require('body-parser');
 
+app.use(bodyParser.json()); // support json encoded bodies
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+//var mongoStore = require("connect-mongo")(expressSession);
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
@@ -29,7 +34,18 @@ if ('development' == app.get('env')) {
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+app.get('/getOrders1',routes.getAllOrders);
+app.get('/getOrders',routes.getOrders);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
+
+/*
+mongo.connect(mongoURL, function(){
+  console.log('Connected to mongo at: ' + mongoURL);
+  http.createServer(app).listen(app.get('port'), function(){
+    console.log('Express server listening on port ' + app.get('port'));
+  });
+
+});*/

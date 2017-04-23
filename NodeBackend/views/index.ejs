@@ -2,10 +2,29 @@
 <html>
   <head>
     <title><%= title %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <h1><%= title %></h1>
+
+   <!-- <div class="panel" ng-repeat="x in orderlist">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="col-md-3" style="text-align: center">{{x.id}}</div>
+          &lt;!&ndash;<div class="col-md-3" style="text-align: center">{{x.prod_name}}</div>
+          <div class="col-md-3" style="text-align: center">{{x.prod_cost}}</div>
+          <div  class="col-md-3" style="text-align: center"><a href="/getItem?prod={{x.prod_name}}"> More details..</a></div>&ndash;&gt;
+        </div>
+      </div></div>-->
+
     <p>Welcome to <%= title %></p>
   </body>
 </html>
