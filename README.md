@@ -1,7 +1,7 @@
 # CMPE 281 - Team Hackathon
 
-Starbucks Web Portal 
-All team members - 
+Starbucks Web Portal   
+All team members -   
 
 API Gateway
 KONG API and 3 nodes Cassandra - Neil Thaker
