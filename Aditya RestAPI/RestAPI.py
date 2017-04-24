@@ -14,30 +14,30 @@ APP_URL = "http://127.0.0.1:5000"
 
 
 class Student(Resource):
-    def get(self, orderid=None, status=None):
+    def get(self, orderid=None, status=None, orders=None):
         data = []
         items=[]
 
         if orderid:
-            studnet_info = mongo.db.student.find_one({"_id": ObjectId(orderid)}, {"_id": 0})
-            if studnet_info:
-                return jsonify(studnet_info)
+            if orderid=="all":
+                cursor = mongo.db.student.find({}, {"_id": 0, "update_time": 0})
+                
+                for i in cursor:
+                    #print student
+                    #student['url'] = APP_URL + url_for('students') + "/" + student.get('location')
+                    data.append(i)
+
+                return jsonify(data)
             else:
-                return {"response": "no order found for {}".format(orderid)}
+                studnet_info = mongo.db.student.find_one({"_id": ObjectId(orderid)}, {"_id": 0})
+                if studnet_info:
+                    return jsonify(studnet_info)
+                else:
+                    return {"response": "no order found for {}".format(orderid)}
 
         elif status:
             cursor = mongo.db.student.find({"status": status}, {"_id": 0})
             for student in cursor:
-                #student['url'] = APP_URL + url_for('students') + "/" + student.get('location')
-                data.append(student)
-
-            return jsonify(data)
-
-        elif status:
-            cursor = mongo.db.student.find({}, {"_id": 0, "update_time": 0})
-
-            for student in cursor:
-                print student
                 #student['url'] = APP_URL + url_for('students') + "/" + student.get('location')
                 data.append(student)
 
@@ -48,27 +48,29 @@ class Student(Resource):
             return {"response": "welcome to Aditya Parmar Restful API written in Python overnight"}
 
     def post(self):
+        
         data = request.get_json()
         if not data:
             data = {"response": "ERROR"}
             return jsonify(data)
         else:
-            location = data.get('location')
-            if location:
-                mongo.db.student.insert(data)
-            else:
-                return {"response": "location is missing"}
+            insid = mongo.db.student.insert(data)
+            
 
-        return redirect(url_for("students"))
+        return {"_id" : str(insid),"url":APP_URL+"/orderid/"+str(insid)}
 
     def put(self, location):
         data = request.get_json()
         mongo.db.student.update({'location': location}, {'$set': data})
         return redirect(url_for("students"))
 
-    def delete(self, location):
-        mongo.db.student.remove({'location': location})
-        return redirect(url_for("students"))
+    def delete(self, orderid):
+        print orderid
+        if orderid == "all":
+            mongo.db.student.delete_many({})
+        else:
+            mongo.db.student.delete_one({'_id': ObjectId(orderid)})
+        #return redirect(url_for("students"))
 
 
 class Index(Resource):
