@@ -1,8 +1,0 @@
-import demorestapi.Product
-
-model {
-	Iterable<Product> productList
-}
-
-json tmpl.product(productList ?: [])
-

@@ -1,7 +1,0 @@
-import demorestapi.Product
-
-model {
-	Product product
-}
-
-json tmpl.product(product)
