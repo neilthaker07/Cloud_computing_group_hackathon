@@ -66,12 +66,12 @@ Kong
 sudo kong start in etc/kong dir.
 
 Added all ports to each EC2 instance which runs each cassandra node. 
-(i.e. 22,80,8000,9042,443,9024,8001,7199,7000,7001,9160,tenant1,tenant2,tenant3)
+(i.e. 22,80,8000,9042,443,9024,8001,7199,7000,7001,9160,8080,tenant1,tenant2,tenant3)
 
 Kong Dashboard:
 Start dash board in local
 Then give public IP of EC2 instance to get its running KONG server.
-API : how to retreive API when consumer call KONG
+API : how to retrieve API when consumer call KONG
 Consumer : username or id
 Plugin : When adding a Plugin on top of an API, every request made by a client will be evaluated by the Plugin's configuration you setup
 

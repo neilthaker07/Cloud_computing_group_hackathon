@@ -1,8 +1,12 @@
 # CMPE 281 - Team Hackathon
-Restbucks application is the simulation of Starbucks web application
 
-Portal
+Starbucks Web Portal   
+All team members -   
 
-API Gateway
+API Gateway  
+KONG API and 3 nodes Cassandra - Neil Thaker
 
-Tenant REST API Backends
+Tenant REST API Backends  
+San Francisco tenant -   
+San Jose tenant -  
+Palo Alto tenant -  
