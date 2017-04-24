@@ -2,10 +2,11 @@ from flask import Flask, jsonify, url_for, redirect, request
 from flask_pymongo import PyMongo
 from flask_restful import Api, Resource
 from flask_cors import CORS, cross_origin
+from bson.objectid import ObjectId
 
 app = Flask(__name__)
 CORS(app)
-app.config['MONGO_HOST'] = '10.0.0.179'
+app.config['MONGO_HOST'] = 'localhost'
 app.config['MONGO_PORT'] = 27017
 app.config["MONGO_DBNAME"] = "students_db"
 mongo = PyMongo(app, config_prefix='MONGO')
@@ -13,33 +14,38 @@ APP_URL = "http://127.0.0.1:5000"
 
 
 class Student(Resource):
-    def get(self, registration=None, department=None):
+    def get(self, orderid=None, status=None):
         data = []
+        items=[]
 
-        if registration:
-            studnet_info = mongo.db.student.find_one({"registration": registration}, {"_id": 0})
+        if orderid:
+            studnet_info = mongo.db.student.find_one({"_id": ObjectId(orderid)}, {"_id": 0})
             if studnet_info:
-                return jsonify({"status": "ok", "data": studnet_info})
+                return jsonify(studnet_info)
             else:
-                return {"response": "no student found for {}".format(registration)}
+                return {"response": "no order found for {}".format(orderid)}
 
-        elif department:
-            cursor = mongo.db.student.find({"department": department}, {"_id": 0}).limit(10)
+        elif status:
+            cursor = mongo.db.student.find({"status": status}, {"_id": 0})
             for student in cursor:
-                student['url'] = APP_URL + url_for('students') + "/" + student.get('registration')
+                #student['url'] = APP_URL + url_for('students') + "/" + student.get('location')
                 data.append(student)
 
-            return jsonify({"department": department, "response": data})
+            return jsonify(data)
 
-        else:
-            cursor = mongo.db.student.find({}, {"_id": 0, "update_time": 0}).limit(10)
+        elif status:
+            cursor = mongo.db.student.find({}, {"_id": 0, "update_time": 0})
 
             for student in cursor:
                 print student
-                student['url'] = APP_URL + url_for('students') + "/" + student.get('registration')
+                #student['url'] = APP_URL + url_for('students') + "/" + student.get('location')
                 data.append(student)
 
-            return jsonify({"response": data})
+            return jsonify(data)
+
+        else:
+            
+            return {"response": "welcome to Aditya Parmar Restful API written in Python overnight"}
 
     def post(self):
         data = request.get_json()
@@ -47,24 +53,21 @@ class Student(Resource):
             data = {"response": "ERROR"}
             return jsonify(data)
         else:
-            registration = data.get('registration')
-            if registration:
-                if mongo.db.student.find_one({"registration": registration}):
-                    return {"response": "student already exists."}
-                else:
-                    mongo.db.student.insert(data)
+            location = data.get('location')
+            if location:
+                mongo.db.student.insert(data)
             else:
-                return {"response": "registration number missing"}
+                return {"response": "location is missing"}
 
         return redirect(url_for("students"))
 
-    def put(self, registration):
+    def put(self, location):
         data = request.get_json()
-        mongo.db.student.update({'registration': registration}, {'$set': data})
+        mongo.db.student.update({'location': location}, {'$set': data})
         return redirect(url_for("students"))
 
-    def delete(self, registration):
-        mongo.db.student.remove({'registration': registration})
+    def delete(self, location):
+        mongo.db.student.remove({'location': location})
         return redirect(url_for("students"))
 
 
@@ -74,10 +77,10 @@ class Index(Resource):
 
 
 api = Api(app)
-api.add_resource(Index, "/", endpoint="index")
-api.add_resource(Student, "/api", endpoint="students")
-api.add_resource(Student, "/api/<string:registration>", endpoint="registration")
-api.add_resource(Student, "/api/department/<string:department>", endpoint="department")
+#api.add_resource(Index, "/", endpoint="index")
+api.add_resource(Student, "/", endpoint="students")
+api.add_resource(Student, "/orderid/<string:orderid>", endpoint="orderid")
+api.add_resource(Student, "/status/<string:status>", endpoint="status")
 
 if __name__ == "__main__":
     app.run(debug=True)
