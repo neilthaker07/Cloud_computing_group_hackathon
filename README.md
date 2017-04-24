@@ -3,7 +3,7 @@
 Starbucks Web Portal   
 All team members -   
 
-API Gateway
+API Gateway  
 KONG API and 3 nodes Cassandra - Neil Thaker
 
 Tenant REST API Backends  
