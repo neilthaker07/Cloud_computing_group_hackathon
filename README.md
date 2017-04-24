@@ -8,5 +8,5 @@ KONG API and 3 nodes Cassandra - Neil Thaker
 
 Tenant REST API Backends  
 San Francisco tenant -   
-San Jose tenant -  
+San Jose tenant - Aditya Parmar 
 Palo Alto tenant -  
