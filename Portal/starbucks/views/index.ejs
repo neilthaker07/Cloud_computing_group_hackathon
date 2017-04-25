@@ -1,13 +1,19 @@
 <title> Starbucks Order </title>
 <h2>Starbucks Order</h2>
+<form action="/view" method = "post">
+<input type = "submit" id="vieworder" name="action" value="View Order" />
+</form>
+<form action="/change" method = "post">
+<input type = "submit" id="changeorder" name="action" value="Change Order" />
+</form>
+
 <form action="/order" method = "post">
-Store
+Store<br>
   <select name="store" id="store">
     <option value="sf">San Francisco</option>
     <option value="sj">San Jose</option>
     <option value="pa">Palo Alto</option>
-  </select>
-<br><br>
+  </select><br><br>
 	Items : use ctrl/command and scroll and select multiple<br>
   <select multiple name="item" id="item">
     <option value="i1">Frapaccino</option>
@@ -19,5 +25,5 @@ Store
     <option value="i7">Tea4</option>
   </select>
   <br><br>
-	<button type = "submit"> Place Order </button>
+	<input type = "submit" name="action" id="placeorder" value="Place Order" />
 </form>

@@ -10,7 +10,7 @@ router.post('/order', function(req, res, next) {
 
 	var store = req.body.store;
     var item = req.body.item;
-    console.log('STORE ' + store + 'ITEM '+item)
+    console.log('STORE ' + store + ' ITEM '+item)
 
 	var options = {
 	hostname: '54.67.94.239',
@@ -38,9 +38,20 @@ router.post('/order', function(req, res, next) {
 	res.redirect('/view');
 });
 
+router.post('/view', function(req, res, next) {
+	res.redirect('/view');
+});
+
 router.get('/view', function(req, res, next) {
   res.render('view', { title: 'Starbucks Orders' });
 });
 
+router.post('/change', function(req, res, next) {
+	res.redirect('/change');
+});
+
+router.get('/change', function(req, res, next) {
+  res.render('change', { title: 'Starbucks Orders' });
+});
 
 module.exports = router;
