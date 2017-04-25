@@ -8,29 +8,19 @@ Store
   </select>
 <br><br>
   Order Id <input type = "text" name="id" id="id" required="required">
-  Items : use ctrl/command and scroll and select multiple<br><br>
-  <select multiple name="item" id="item">
-    <option value="i1">Frapaccino</option>
-    <option value="i2">Hot Chocolate</option>
-    <option value="i3">Coffee</option>
-    <option value="i4">Tea1</option>
-    <option value="i5">Tea2</option>
-    <option value="i6">Tea3</option>
-    <option value="i7">Tea4</option>
-  </select>
   <br><br>
-  <button type = "submit" onclick="changing()"> Change Order </button>
+  <button type = "submit" onclick="removing()"> Change Order </button>
 <br><br>
 <script type="text/javascript">
 
-function changing() {
+function removing() {
   callback = function(response){
     var str = '';
     var http = require('http');
   var options = {
   hostname: '54.67.94.239',
   port: '8000',
-  method: 'PUT',
+  method: 'DELETE',
   headers: {Host: store}
   };
 
