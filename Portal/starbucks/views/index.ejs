@@ -1,7 +1,23 @@
 <title> Starbucks Order </title>
 <h2>Starbucks Order</h2>
 <form action="/order" method = "post">
-	Store <input type ="text" name="store" id="store" required="true"> <br><br>
-	Choose Items <input type="text" name="items" id="items" required="true"> <br><br>
+Store
+  <select name="store" id="store">
+    <option value="sf">San Francisco</option>
+    <option value="sj">San Jose</option>
+    <option value="pa">Palo Alto</option>
+  </select>
+<br><br>
+	Items : use ctrl/command and scroll and select multiple<br>
+  <select multiple name="item" id="item">
+    <option value="i1">Frapaccino</option>
+    <option value="i2">Hot Chocolate</option>
+    <option value="i3">Coffee</option>
+    <option value="i4">Tea1</option>
+    <option value="i5">Tea2</option>
+    <option value="i6">Tea3</option>
+    <option value="i7">Tea4</option>
+  </select>
+  <br><br>
 	<button type = "submit"> Place Order </button>
 </form>

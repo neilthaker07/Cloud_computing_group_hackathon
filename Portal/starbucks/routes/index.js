@@ -1,31 +1,26 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Starbucks Order' });
 });
 
 router.post('/order', function(req, res, next) {
-    var kongIP = 'http://54.67.94.239:8000'
-    //req.redirect(kongIP)
-
 	var http = require('http');
 
-	var dict = [];
-	dict.push({
-    	key: "Host",
-    	value: "pa"
-	});
+	var store = req.body.store;
+    var item = req.body.item;
+    console.log('STORE ' + store + 'ITEM '+item)
 
 	var options = {
 	hostname: '54.67.94.239',
 	port: '8000',
 	method: 'GET',
-	headers: dict
+	headers: {Host: store}/*,
+	params: store, item*/
 	};
 
-	callback = function(response) {
+	callback = function(response){
 	  var str = '';
 
 	  //another chunk of data has been recieved, so append it to `str`
@@ -40,6 +35,12 @@ router.post('/order', function(req, res, next) {
 	}
 
 	http.request(options, callback).end();
+	res.redirect('/view');
 });
+
+router.get('/view', function(req, res, next) {
+  res.render('view', { title: 'Starbucks Orders' });
+});
+
 
 module.exports = router;
