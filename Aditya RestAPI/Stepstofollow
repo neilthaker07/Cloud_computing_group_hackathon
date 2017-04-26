@@ -1,5 +1,1 @@
 Steps: 
-1. follow official document : http://guides.grails.org/rest-mongodb/guide/index.html
-2. update application.yml to enhance CORS functionality.
-3. Try to call your api with postman.
-4. make client side to use api.
