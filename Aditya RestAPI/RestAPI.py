@@ -85,4 +85,5 @@ api.add_resource(Student, "/orderid/<string:orderid>", endpoint="orderid")
 api.add_resource(Student, "/status/<string:status>", endpoint="status")
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    
+      app.run(host='0.0.0.0',debug=True)
