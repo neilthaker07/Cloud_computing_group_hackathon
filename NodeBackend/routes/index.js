@@ -10,6 +10,17 @@ exports.index = function(req, res){
     res.render('index', { title:'HI'});
 };
 
+exports.createOrder = function (req,res) {
+    console.log("DATA:"+req.body.restbucks11.coffee);
+
+
+    res.redirect('/getOrders');
+}
+
+exports.create = function(req, res){
+    res.render('create', { title:'HI'});
+};
+
 exports.deleteOrder = function(req, res){
     console.log(req.param('id'));
 
