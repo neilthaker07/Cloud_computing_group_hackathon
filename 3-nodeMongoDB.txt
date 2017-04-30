@@ -1,0 +1,5 @@
+Steps to create 3-node MongoDB cluster.
+
+Here one node serves as primary node where write operations are perfomed. Other node serves as secondary node where read operations are performed. The data are replicated in both the nodes. This makes the backend more scalable and reliable and handles the incoming requests.
+
+The third node serves as the arbitrator and converts the secondary node to primary node when the primary node is down and cannot take the incoming request anymore.
