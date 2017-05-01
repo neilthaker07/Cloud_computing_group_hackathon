@@ -1,0 +1,88 @@
+Primary Node:-
+sudo nano /etc/fstab   , change defaults with noatime.                      
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list                        
+sudo apt-get update                        
+sudo apt-get install -y mongodb-org                        
+sudo service mongod start                        
+sudo nano /etc/hosts   
+    
+          127.0.0.1 localhost mongo0.example.com
+          10.0.0.113 mongo0.example.com
+          10.0.0.111 mongo1.example.com
+          10.0.0.252 mongo2.example.com
+
+sudo hostname mongo0.example.com
+sudo nano /etc/hostname
+          replace with mongo0.example.com
+sudo nano /etc/mongod.conf
+          comment out bind ip .  # bindIp: 127.0.0.1
+          mongod --replSet "rs0" --dbpath /tmp/
+
+Primary Shell :-
+Open new terminal and connect primary instatance.
+You can see :   ubuntu@mongo0:~$ 
+
+Primary Node:-
+mongod --replSet "rs0" --dbpath /tmp/
+
+Primary Shell :-
+rs.initiate()
+rs.add("mongo2.example.com:27017",true)
+rs0:PRIMARY> 
+
+Secondary Node:-
+sudo nano /etc/fstab   , change defaults with noatime.                      
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list                        
+sudo apt-get update                        
+sudo apt-get install -y mongodb-org                        
+sudo service mongod start                        
+sudo nano /etc/hosts   
+    
+          127.0.0.1 localhost mongo1.example.com
+          10.0.0.113 mongo0.example.com
+          10.0.0.111 mongo1.example.com
+          10.0.0.252 mongo2.example.com
+
+sudo hostname mongo0.example.com
+sudo nano /etc/hostname
+          replace with mongo1.example.com
+
+Secondary  Shell :-
+Open new terminal and connect primary instatance.
+You can see :   ubuntu@mongo0:~$ 
+
+Primary Node:-
+mongod --replSet "rs0" --dbpath /tmp/
+
+Primary Shell :-
+rs.initiate()
+rs.add("mongo2.example.com:27017",true)
+rs0:PRIMARY> 
+
+
+
+Third Node :
+sudo nano /etc/fstab   , change defaults with noatime.                      
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+echo "deb http://repo.mongodb.org/apt/ubuntu "$(lsb_release -sc)"/mongodb-org/3.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-3.2.list                        
+sudo apt-get update                        
+sudo apt-get install -y mongodb-org                        
+sudo service mongod start                        
+sudo nano /etc/hosts   
+    
+          127.0.0.1 localhost mongo2.example.com
+          10.0.0.113 mongo0.example.com
+          10.0.0.111 mongo1.example.com
+          10.0.0.252 mongo2.example.com
+
+sudo hostname mongo2.example.com
+sudo nano /etc/hostname
+          replace with mongo2.example.com
+sudo nano /etc/mongod.conf
+          comment out bind ip .  # bindIp: 127.0.0.1
+          mongod --replSet "rs0" --dbpath /tmp/
+          
+          
+ Reference : https://gist.github.com/leommoore/309de7c0042ed697ee84
