@@ -19,22 +19,25 @@
 <br/>
 <div class="col-md-8 panel" ng-repeat="x in orderlist">
     <div class="panel panel-primary">
-    <div class="panel-heading"><p><b>ORDER : {{x._id}}</b></p></div>
+    <div class="panel-heading"><p><b>ORDER : </b></p><p ng-model="orderid"><b>{{x._id}}</b></p></div>
         <div class="panel-body">
     <div class="row">
             <!--<div class="col-md-6" style="text-align: center">{{x._id}}</div>-->
-            <div class="row">
+
             <div style="text-align: center" ng-repeat="y in x.items">
-                <div class="col-md-3">{{y.qty}}</div>
-                <div class="col-md-3">{{y.name}}</div>
-                <div class="col-md-3">{{y.milk}}</div>
-                <div class="col-md-3">{{y.size}}</div>
+                <div class="col-md-4">{{y.name}}</div>
+                <div class="col-md-4">{{y.milk}}</div>
+                <div class="col-md-4">{{y.size}}</div>
             </div>
             <!--<div class="col-md-3" style="text-align: center">{{x.prod_name}}</div>
             <div class="col-md-3" style="text-align: center">{{x.prod_cost}}</div>
             <div  class="col-md-3" style="text-align: center"><a href="/getItem?prod={{x.prod_name}}"> More details..</a></div>-->
-        </div>
+
     </div></div>
+    </div>
+    <div class="col-md-offset-9">
+        <button type="button" class="btn btn-primary" style="margin-top:-10px" ng-click="deletefn(x._id)">DELETE</button>
+        <button type="button" class="btn btn-primary" style="margin-top:-10px" ng-click="updatefn(x._id)">UPDATE</button>
     </div>
     </div>
 

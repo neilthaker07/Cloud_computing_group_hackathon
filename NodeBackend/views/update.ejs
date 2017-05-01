@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="angularjs/clientScript.js"></script>
+</head>
+<body ng-app="sessioncheck" ng-controller="update">
+<br/>
+<br/>
+<div class="col-md-offset-2 col-md-6">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            UPDATE YOUR ORDER !
+        </div>
+        <div class="panel-body">
+
+            <div class="row" style="margin-bottom: 5px">
+                <div class="col-md-6">
+                    Coffee :
+                </div>
+                <div class="col-md-6">
+
+                    <select ng-model="restbucks.coffee">
+                        <option value="Latte Macchiato">Latte Macchiato</option>
+                        <option value="Cappuccino">Cappuccino</option>
+                        <option value="Latte">Latte</option>
+                        <option value="Mocha">Mocha</option>
+                    </select>
+
+                </div>
+            </div>
+
+            <div class="row" style="margin-bottom: 5px">
+                <div class="col-md-6">
+                    Milk :
+                </div>
+                <div class="col-md-6">
+
+                    <select ng-model="restbucks.milk">
+                        <option value="2% milk">2% milk</option>
+                        <option value="Whole milk">Whole milk</option>
+                        <option value="Non-fat milk">Non-fat milk</option>
+                        <option value="Almond">Almond</option>
+                        <option value="Coconut">Coconut</option>
+                    </select>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    Size :
+                </div>
+                <div class="col-md-6">
+
+                    <select ng-model="restbucks.size">
+                        <option value="Short 8oz">Short 8oz</option>
+                        <option value="Tall 12oz">Tall 12oz</option>
+                        <option value="Grande 16oz">Grande 16oz</option>
+                        <option value="Venti 20oz">Venti 20oz</option>
+                    </select>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--<div class="col-md-8 panel" ng-repeat="x in orderlist">
+        <div class="panel panel-primary">
+            <div class="panel-heading"><p><b>ORDER : {{x._id}}</b></p></div>
+            <div class="panel-body">
+                <div class="row">
+                    &lt;!&ndash;<div class="col-md-6" style="text-align: center">{{x._id}}</div>&ndash;&gt;
+                    <div class="row">
+                        <div style="text-align: center" ng-repeat="y in x.items">
+                            <div class="col-md-3">{{y.qty}}</div>
+                            <div class="col-md-3">{{y.name}}</div>
+                            <div class="col-md-3">{{y.milk}}</div>
+                            <div class="col-md-3">{{y.size}}</div>
+                        </div>
+                        &lt;!&ndash;<div class="col-md-3" style="text-align: center">{{x.prod_name}}</div>
+                        <div class="col-md-3" style="text-align: center">{{x.prod_cost}}</div>
+                        <div  class="col-md-3" style="text-align: center"><a href="/getItem?prod={{x.prod_name}}"> More details..</a></div>&ndash;&gt;
+                    </div>
+                </div></div>
+        </div>
+    </div>-->
+    <div class="col-md-offset-10">
+        <button type="button" class="btn btn-primary" ng-click="updatefn(x._id)">UPDATE</button>
+    </div>
+</div>
+</body>
+</html>
