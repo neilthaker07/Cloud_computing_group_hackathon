@@ -42,7 +42,7 @@ login.controller('sessioncheck',function($scope,$http,$location) {
 });
 
 login.controller('creation',function($scope,$http,$location) {
-
+window.alert("CREATION C");
 
     $scope.createfn=function () {
         console.log($scope.restbucks);
@@ -74,17 +74,50 @@ login.controller('creation',function($scope,$http,$location) {
     }
 });
 
-login.controller('update',function($scope,$http,$location) {
+login.controller('updation',function($scope,$http,$location) {
+    window.alert("INN");
+    var s1 = $location.absUrl();
+    var params = s1.split("?");
+    console.log(params[1]);
+    var parValue = params[1].split("=");
+    console.log(parValue[1]);
+    $scope.idv=parValue[1];
+    //var x=$location.search().id;
+    $http({
+        method: "POST",
+        url: '/getOrder',
+        data: {
+            id:parValue[1]
+        }
+    }).success(function (data) {
+        //console.log(JSON.stringify(data.category));//checking the response data for statusCode
+        console.log(data);
+        if (data.statusCode == 200) {
+         //   $scope.orderlist=data.orders;
+            $scope.restbucks=data.order.items[0];
+            console.log(data);
+        }
+        else {
+          //  $scope.orderlist=[];
+            console.log(data);
 
-    $scope.updatefn=function (orderid) {
+        }
+        //Making a get call to the '/redirectToHomepage' API
+        //window.location.assign("/homepage");
+    }).error(function (error) {
+    });
+
+
+    $scope.updatefn=function () {
         window.alert("INN");
-        console.log(orderid);
+        console.log($scope.idv);
         //$scope.orderlist=[];
         $http({
-            method: "GET",
+            method: "POST",
             url: '/update',
             data: {
-                id : orderid
+                id : $scope.idv,
+                restbucks11:$scope.restbucks
             }
         }).success(function (data) {
             //console.log(JSON.stringify(data.category));//checking the response data for statusCode

@@ -11,9 +11,10 @@
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
 
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <script src="angularjs/clientScript.js"></script>
+    <script src="../angularjs/clientScript.js"></script>
 </head>
-<body ng-app="sessioncheck" ng-controller="update">
+<body ng-app="sessioncheck" ng-controller="updation">
+
 <br/>
 <br/>
 <div class="col-md-offset-2 col-md-6">
@@ -29,7 +30,7 @@
                 </div>
                 <div class="col-md-6">
 
-                    <select ng-model="restbucks.coffee">
+                    <select ng-model="restbucks.name">
                         <option value="Latte Macchiato">Latte Macchiato</option>
                         <option value="Cappuccino">Cappuccino</option>
                         <option value="Latte">Latte</option>
@@ -94,8 +95,9 @@
         </div>
     </div>-->
     <div class="col-md-offset-10">
-        <button type="button" class="btn btn-primary" ng-click="updatefn(x._id)">UPDATE</button>
+        <button type="button" class="btn btn-primary" ng-click="updatefn()">UPDATE</button>
     </div>
 </div>
+
 </body>
 </html>

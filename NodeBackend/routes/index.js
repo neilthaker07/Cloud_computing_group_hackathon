@@ -37,11 +37,12 @@ exports.create = function(req, res){
 };
 
 exports.updateOrder = function(req, res){
-    console.log(req.param('id'));
+   // console.log(req.param('id'));
     res.render('update', { title:'HI'});
 };
 
 exports.update = function (req,res) {
+    console.log(req.body.id+"-------");
     mongo.connect(mongoURL, function(){
 
         console.log('Connected to mongo at: ' + mongoURL);
@@ -49,15 +50,15 @@ exports.update = function (req,res) {
         var coll = mongo.collection('order');
 
 
-        var x=mongow.ObjectID(req.param('id'));
+        var x=mongow.ObjectID(req.body.id);
         coll.update({_id:x},{$set:{
             location:"Palo Alto",
-            items:[{name:req.param('restbucks11.coffee'),milk:req.param('restbucks11.milk'),size:req.param('restbucks11.size')}],
+            items:[{name:req.body.restbucks11.name,milk:req.body.restbucks11.milk,size:req.body.restbucks11.size}],
 
         }}, function(err, user){
 
             if (user) {
-                console.log(user);
+                //console.log(user);
                 res.send({"statusCode" : 200,"order":user});
             } else {
                 console.log("returned false login");
@@ -65,34 +66,29 @@ exports.update = function (req,res) {
             }
         });
     });
-}
+};
 
 exports.getOrder = function (req,res) {
     mongo.connect(mongoURL, function(){
 
-        console.log('Connected to mongo at: ' + mongoURL);
+        console.log('Connected to mongo at: ' + mongoURL+req.body.id);
 
         var coll = mongo.collection('order');
-
-
-        var x=mongow.ObjectID(req.param('id'));
-        coll.find({_id:x}, function(err, user){
-
+        var x=mongow.ObjectID(req.body.id);
+        console.log(x);
+        coll.findOne({_id:x}, function(err, user){
+            var json_res;
             if (user) {
-
+                json_res={"statusCode":200,"order":user};
             } else {
-
+                json_res={"statusCode":404};
                 console.log("returned false login");
             }
-
-            //  res.send(json_res);
-
+            res.send(json_res);
         });
-
-
-
     });
-}
+};
+
 exports.deleteOrder = function(req, res){
     console.log(req.param('id'));
 
