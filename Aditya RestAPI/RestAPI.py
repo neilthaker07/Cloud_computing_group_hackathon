@@ -14,34 +14,39 @@ APP_URL = "http://127.0.0.1:5000"
 
 
 class orders(Resource):
-    def get(self, orderid=None, status=None):
+    def get(self, orderid=None, status=None , itemid=None):
         data = []
         items=[]
 
         if orderid:
             if orderid=="all":
-                cursor = mongo.db.orders.find({}, {"_id": 0})
                 
-                for i in cursor:
-                    #print orders
-                    #orders['url'] = APP_URL + url_for('orders') + "/" + orders.get('location')
-                    data.append(i)
+            		
+            			# Return All Ordered 
 
-                return jsonify(data)
+		                cursor = mongo.db.orders.find({}, {"_id": 0})
+		                
+		                for i in cursor:
+		                    #print orders
+		                    #orders['url'] = APP_URL + url_for('orders') + "/" + orders.get('location')
+		                    data.append(i)
+
+		                return jsonify(data)
+
+
+            
+
             else:
-                studnet_info = mongo.db.orders.find_one({"_id": ObjectId(orderid)}, {"_id": 0})
-                if studnet_info:
-                    return jsonify(studnet_info)
-                else:
-                    return {"response": "no order found for {}".format(orderid)}
+                
+            	
+		                
+		                studnet_info = mongo.db.orders.find_one({"_id": ObjectId(orderid)}, {"_id": 0})
+		                if studnet_info:
+		                    return jsonify(studnet_info)
+		                else:
+		                    return {"response": "no order found for {}".format(orderid)}
 
-        elif status:
-            cursor = mongo.db.orders.find({"status": status}, {"_id": 0})
-            for orders in cursor:
-                #orders['url'] = APP_URL + url_for('orders') + "/" + orders.get('location')
-                data.append(orders)
-
-            return jsonify(data)
+  
 
         else:
             
@@ -66,15 +71,21 @@ class orders(Resource):
         	if(itemid):
         			return {"_id" : str(orderid),"response":"updated item"}
         	else:	
-        			insid  = mongo.db.orders.update({"_id": ObjectId(orderid)}, {'$set': data})
+        			mongo.db.orders.update({"_id": ObjectId(orderid)}, {'$set': data})
         			return {"_id" : str(orderid),"response":"updated"}
 
-    def delete(self, orderid):
+    def delete(self, orderid=None,itemid=None):
         print orderid
+
         if orderid == "all":
             mongo.db.orders.delete_many({})
         else:
-            mongo.db.orders.delete_one({'_id': ObjectId(orderid)})
+        		if(itemid):
+        					mongo.db.orders.update({"_id": ObjectId(orderid)},{ '$pull':{ "items": {"id" : itemid } } })
+        					return {"_id":str(orderid),"itemid":str(itemid),"response":"deleted","message":"An item is deleted."}
+        		else:
+
+            				mongo.db.orders.delete_one({'_id': ObjectId(orderid)})
         #return redirect(url_for("orders"))
 
    
@@ -89,7 +100,7 @@ api = Api(app)
 api.add_resource(orders, "/", endpoint="orders")
 api.add_resource(orders, "/orderid/<string:orderid>", endpoint="orderid")
 api.add_resource(orders, "/orderid/<string:orderid>/itemid/<string:itemid>", endpoint="itemid")
-api.add_resource(orders, "/status/<string:status>", endpoint="status")
+api.add_resource(orders, "/orderid/<string:orderid>/status/<string:status>", endpoint="status")
 
 if __name__ == "__main__":
     app.run(debug=True)
