@@ -8,44 +8,44 @@ app = Flask(__name__)
 CORS(app)
 app.config['MONGO_HOST'] = 'localhost'
 app.config['MONGO_PORT'] = 27017
-app.config["MONGO_DBNAME"] = "students_db"
+app.config["MONGO_DBNAME"] = "orders_db"
 mongo = PyMongo(app, config_prefix='MONGO')
 APP_URL = "http://127.0.0.1:5000"
 
 
-class Student(Resource):
-    def get(self, orderid=None, status=None, orders=None):
+class orders(Resource):
+    def get(self, orderid=None, status=None):
         data = []
         items=[]
 
         if orderid:
             if orderid=="all":
-                cursor = mongo.db.student.find({}, {"_id": 0, "update_time": 0})
+                cursor = mongo.db.orders.find({}, {"_id": 0})
                 
                 for i in cursor:
-                    #print student
-                    #student['url'] = APP_URL + url_for('students') + "/" + student.get('location')
+                    #print orders
+                    #orders['url'] = APP_URL + url_for('orders') + "/" + orders.get('location')
                     data.append(i)
 
                 return jsonify(data)
             else:
-                studnet_info = mongo.db.student.find_one({"_id": ObjectId(orderid)}, {"_id": 0})
+                studnet_info = mongo.db.orders.find_one({"_id": ObjectId(orderid)}, {"_id": 0})
                 if studnet_info:
                     return jsonify(studnet_info)
                 else:
                     return {"response": "no order found for {}".format(orderid)}
 
         elif status:
-            cursor = mongo.db.student.find({"status": status}, {"_id": 0})
-            for student in cursor:
-                #student['url'] = APP_URL + url_for('students') + "/" + student.get('location')
-                data.append(student)
+            cursor = mongo.db.orders.find({"status": status}, {"_id": 0})
+            for orders in cursor:
+                #orders['url'] = APP_URL + url_for('orders') + "/" + orders.get('location')
+                data.append(orders)
 
             return jsonify(data)
 
         else:
             
-            return {"response": "welcome to Aditya Parmar Restful API written in Python overnight"}
+            return {"response": "welcome to Aditya Parmar Restful API for Starbucks."}
 
     def post(self):
         
@@ -54,36 +54,42 @@ class Student(Resource):
             data = {"response": "ERROR"}
             return jsonify(data)
         else:
-            insid = mongo.db.student.insert(data)
+            insid = mongo.db.orders.insert(data)
             
 
         return {"_id" : str(insid),"url":APP_URL+"/orderid/"+str(insid)}
 
-    def put(self, location):
+    def put(self, orderid=None,itemid=None):
         data = request.get_json()
-        mongo.db.student.update({'location': location}, {'$set': data})
-        return redirect(url_for("students"))
+        if(orderid):
+
+        	if(itemid):
+        			return {"_id" : str(orderid),"response":"updated item"}
+        	else:	
+        			insid  = mongo.db.orders.update({"_id": ObjectId(orderid)}, {'$set': data})
+        			return {"_id" : str(orderid),"response":"updated"}
 
     def delete(self, orderid):
         print orderid
         if orderid == "all":
-            mongo.db.student.delete_many({})
+            mongo.db.orders.delete_many({})
         else:
-            mongo.db.student.delete_one({'_id': ObjectId(orderid)})
-        #return redirect(url_for("students"))
+            mongo.db.orders.delete_one({'_id': ObjectId(orderid)})
+        #return redirect(url_for("orders"))
 
+   
 
 class Index(Resource):
     def get(self):
-        return redirect(url_for("students"))
+        return redirect(url_for("orders"))
 
 
 api = Api(app)
 #api.add_resource(Index, "/", endpoint="index")
-api.add_resource(Student, "/", endpoint="students")
-api.add_resource(Student, "/orderid/<string:orderid>", endpoint="orderid")
-api.add_resource(Student, "/status/<string:status>", endpoint="status")
+api.add_resource(orders, "/", endpoint="orders")
+api.add_resource(orders, "/orderid/<string:orderid>", endpoint="orderid")
+api.add_resource(orders, "/orderid/<string:orderid>/itemid/<string:itemid>", endpoint="itemid")
+api.add_resource(orders, "/status/<string:status>", endpoint="status")
 
 if __name__ == "__main__":
-    
-      app.run(host='0.0.0.0',debug=True)
+    app.run(debug=True)
