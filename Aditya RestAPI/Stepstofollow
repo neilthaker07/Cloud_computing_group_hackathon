@@ -1,1 +1,4 @@
-Steps: 
+1. Create Api with Python Flask.
+2. Add 3-cluster mongodb cluster .
+3. Create Hosting Environment for Python API.
+4. Host API and Test with Postman.
