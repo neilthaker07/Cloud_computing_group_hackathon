@@ -1,4 +1,4 @@
-1. Create Api with Python Flask.
-2. Add 3-cluster mongodb cluster .
-3. Create Hosting Environment for Python API.
+1. Create Api with Python Flask. 
+2. Add 3-cluster mongodb cluster (follow "Mongodb 3-Node Cluster" Document).
+3. Create Hosting Environment for Python API (follow " HOST REST API ON EC2 " Document).
 4. Host API and Test with Postman.
