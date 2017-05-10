@@ -6,11 +6,11 @@ from bson.objectid import ObjectId
 
 app = Flask(__name__)
 CORS(app)
-app.config['MONGO_HOST'] = 'localhost'
+app.config['MONGO_HOST'] = 'ec2-54-193-83-16.us-west-1.compute.amazonaws.com'
 app.config['MONGO_PORT'] = 27017
 app.config["MONGO_DBNAME"] = "orders_db"
 mongo = PyMongo(app, config_prefix='MONGO')
-APP_URL = "http://127.0.0.1:5000"
+APP_URL = "ec2-54-67-23-66.us-west-1.compute.amazonaws.com:5000"
 
 
 class orders(Resource):
@@ -112,4 +112,4 @@ api.add_resource(orders, "/orderid/<string:orderid>/itemid/<string:itemid>", end
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host='0.0.0.0',debug=True)
