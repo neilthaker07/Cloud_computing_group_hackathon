@@ -37,6 +37,12 @@ app.get('/users', user.list);
 app.get('/getOrders1',routes.getAllOrders);
 app.get('/getOrders',routes.getOrders);
 app.get('/deleteOrder',routes.deleteOrder);
+app.get('/createOrder',routes.create);
+app.post('/createOrder1',routes.createOrder);
+app.get('/updateOrder',routes.updateOrder);
+app.post('/update',routes.update);
+app.post('/getOrder',routes.getOrder);
+
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

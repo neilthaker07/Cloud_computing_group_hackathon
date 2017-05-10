@@ -1,2 +1,31 @@
 Go to EC2 Console
-Launch EC2 Console
+Launch EC2 Console (choose ubantu, open port 5000, 80, 143, 22).
+connect via ssh.
+install pip : apt-get -y install pip
+install python: apt-get -y install python
+install virtualenv: pip install virtualenv
+install awsebcli: pip install virtualenv
+Create Virtual Env:
+      1. virtualenv ~/eb-virt
+      2. source ~/eb-virt/bin/activate
+      3. pip install flask
+      4. pip install flask_pymongo
+      5. pip install PyMongo
+      6. pip install flask_restful
+      7. pip install flask_cors
+      8. pip freeze 
+Create a Flask Application:
+      1.source ~/eb-virt/bin/activate
+      2.mkdir eb-flask
+      3.cd eb-flask
+      4.sudo nano application.yml
+      5.paste your code
+      6.relplace app.run with "app.run(host='0.0.0.0',debug=True)"
+      7.ctrl+x Y Enter
+Run: python application.py
+Ctrl + C to stop.
+Screen python application.py - use to keep running server after close terminal.
+To stop : screen -l & screen -r "sessionid".
+
+      
+
