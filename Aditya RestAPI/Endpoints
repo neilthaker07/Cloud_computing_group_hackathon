@@ -38,7 +38,7 @@ http://ec2-54-67-23-66.us-west-1.compute.amazonaws.com:5000/orderid/5912e3ab3be6
 http://ec2-54-67-23-66.us-west-1.compute.amazonaws.com:5000/orderid/all (for all user)
 http://ec2-54-67-23-66.us-west-1.compute.amazonaws.com:5000/orderid/5912e3ab3be6076f7890bf44/itemid/1
 
-POST:
+PUT:
 for an order:
 http://ec2-54-67-23-66.us-west-1.compute.amazonaws.com:5000/orderid/{orderid}
 for an item:
