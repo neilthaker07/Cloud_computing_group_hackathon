@@ -1,4 +1,4 @@
-<title> Starbucks Order </title>
+<!--<title> Starbucks Order </title>
 <h2>Starbucks Order</h2>
 <form action="/view" method = "post">
 <input type = "submit" id="vieworder" name="action" value="View Order" />
@@ -29,4 +29,236 @@ Store<br>
   </select>
   <br><br>
 	<input type = "submit" name="action" id="placeorder" value="Place Order" />
-</form>
+</form>-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+    .one .jumbotron
+    {
+
+      padding: 10px;
+      min-height: 450px;
+      min-width:45%;
+      border-radius:0;
+    }
+
+    .two .jumbotron
+    {
+
+      padding: 10px;
+      min-height:450px;
+      min-width:45%;
+      border-radius:0;
+      margin-left: 10%;
+    }
+  </style>
+</head>
+
+
+</html>
+<body background="/cafe.jpg" style="margin-top: 0px">
+
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">STARBUCKS</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+
+
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">City <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="/sanjose">San Jose</a></li>
+          <li><a href="/sf">san francisco</a></li>
+          <li><a href="/la">Los Angles</a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="row">
+
+      <div class="one">
+        <div class="jumbotron col-sm-4">
+          <p class="text-center">New Order</p>
+          <div class="form-group">
+            <label for="usr">Item Name:</label>
+          <select class="form-control">
+            <option value="Latte Macchiato">Latte Macchiato</option>
+            <option value="Cappuccino">Cappuccino</option>
+            <option value="Latte">Latte</option>
+            <option value="Mocha">Mocha</option>
+          </select>
+          </div>
+
+          <div class="form-group">
+            <label for="usr">Milk:</label>
+            <select class="form-control">
+              <option value="2% milk">2% milk</option>
+              <option value="Whole milk">Whole milk</option>
+              <option value="Non-fat milk">Non-fat milk</option>
+              <option value="Almond">Almond</option>
+              <option value="Coconut">Coconut</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="usr">Size:</label>
+            <select class="form-control">
+              <option value="Short 8oz">Short 8oz</option>
+              <option value="Tall 12oz">Tall 12oz</option>
+              <option value="Grande 16oz">Grande 16oz</option>
+              <option value="Venti 20oz">Venti 20oz</option>
+            </select>
+          </div>
+          <button  class="btn btn-warning">Add Item</button>
+
+          <table class="table">
+            <thead>
+            <tr>
+              <th>No.</th>
+              <th>Item Name</th>
+              <th>Milk</th>
+              <th>Size</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%for(var i=1; i < 1 ; i++){ %>
+            <tr>
+              <td>1</td>
+              <td>fdsf</td>
+              <td>dsfw</td>
+              <td>ewfew</td>
+            </tr>
+            <%}%>
+            </tbody>
+          </table>
+
+          <br/>
+          <br>
+          <div class="text-center">
+            <button class="btn btn-success" style="width: 70%">Place Order</button>
+          </div>
+
+
+
+       </div>
+      </div>
+      <div class="two">
+        <div class="jumbotron col-sm-4">
+          <p class="text-center">View Order</p>
+          <div class="form-group">
+            <label for="usr">Choose Order:</label>
+            <select class="form-control">
+              <option value="Latte Macchiato">dhlahsdaswqle1312312xbakdakdnsdsahas121f</option>
+
+            </select>
+          </div>
+          <table class="table">
+            <thead>
+            <tr>
+              <th>No.</th>
+              <th>Item Name</th>
+              <th>Milk</th>
+              <th>Size</th>
+            </tr>
+            </thead>
+            <tbody>
+            <%for(var i=1; i < 1 ; i++){ %>
+            <tr>
+              <td>1</td>
+              <td>fdsf</td>
+              <td>dsfw</td>
+              <td>ewfew</td>
+            </tr>
+            <%}%>
+            </tbody>
+          </table>
+
+        </div>
+  </div>
+</div>
+
+
+    <div class="row">
+
+      <div class="one">
+        <div class="jumbotron col-sm-4">
+          <p class="text-center">Update Order</p>
+          <div class="form-group">
+            <label for="usr">Choose Order:</label>
+            <select class="form-control">
+              <option value="Latte Macchiato">dhlahsdaswqle1312312xbakdakdnsdsahas121f</option>
+
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="usr">Choose Item:</label>
+            <select class="form-control">
+              <option value="Latte Macchiato">1</option>
+
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="usr">Item Name:</label>
+            <input type="text" class="form-control" name="upitemname">
+          </div>
+          <div class="form-group">
+            <label for="usr">Milk:</label>
+            <input type="text" class="form-control" name="upmilk">
+          </div>
+          <div class="form-group">
+            <label for="usr">Size:</label>
+            <input type="text" class="form-control" name="upsize">
+          </div>
+          <div class="text-center">
+            <button class="btn btn-primary" style="width: 70%">Update Order</button>
+          </div>
+
+
+
+        </div>
+      </div>
+
+    <div class="two">
+        <div class="jumbotron col-sm-4">
+          <p class="text-center">Delete Order</p>
+          <div class="form-group">
+            <label for="usr">Choose Order:</label>
+            <select class="form-control">
+              <option value="Latte Macchiato">dhlahsdaswqle1312312xbakdakdnsdsahas121f</option>
+
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="usr">Choose Item:</label>
+            <select class="form-control">
+              <option value="Latte Macchiato">1</option>
+
+            </select>
+          </div>
+          <div class="text-center">
+            <button class="btn btn-danger" style="width: 70%">Delete Order</button>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+</div>
+
+</body>
+</html>
+

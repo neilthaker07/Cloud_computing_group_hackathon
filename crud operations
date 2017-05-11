@@ -1,0 +1,144 @@
+KONG : http://54.67.94.239:8000
+
+Host : sf
+
+GET :
+
+http://54.67.94.239:8000/orderid/5912e3ab3be6076f7890bf44
+http://54.67.94.239:8000/orderid/5912e3ab3be6076f7890bf44/itemid/1
+http://54.67.94.239:8000/orderid/all
+
+POST:
+
+http://54.67.94.239:8000/
+Body:
+{
+	"items":[
+		{
+			"id":1,
+			"milk":"No",
+			"size":"L",
+			"name":"lattee"
+		},
+		{
+			"id":2,
+			"milk":"No",
+			"size":"L",
+			"name":"coffee"
+		},
+		{
+			"id":3,
+			"milk":"yes",
+			"size":"M",
+			"name":"lattee"
+		}
+		
+		
+		],
+		
+	"status" : "order intiate",
+    "location" : "San Jose",
+    "message":"Order has been placed"
+}
+
+PUT:
+
+http://54.67.94.239:8000/orderid/5912e3ab3be6076f7890bf44
+Body:
+{
+	"items":[
+		{
+			"id":444,
+			"milk":"NoNONON",
+			"size":"G",
+			"name":"lattee"
+		},
+		{
+			"id":2,
+			"milk":"No",
+			"size":"L",
+			"name":"coffee"
+		},
+		{
+			"id":3,
+			"milk":"yes",
+			"size":"M",
+			"name":"lattee"
+		}
+		
+		
+		],
+		
+	"status" : "order intiate",
+    "location" : "San Jose",
+    "message":"Order has been placed"
+}
+
+http://54.67.94.239:8000/orderid/5912e3ab3be6076f7890bf44/itemid/1
+
+Delete:
+
+http://54.67.94.239:8000/orderid/all
+http://54.67.94.239:8000/orderid/5912e3ab3be6076f7890bf44
+http://54.67.94.239:8000/orderid/5912e3ab3be6076f7890bf44/itemid/1
+
+
+
+
+Host : pa
+
+GET:
+
+http://54.67.94.239:8000/getOrders
+
+POST:
+
+http://54.67.94.239:8000/createOrder1
+
+{"restbucks11":{"coffee":"Latte",
+	"milk":"2% milk",
+	"size": "tall"
+}}
+
+PUT:
+
+http://54.67.94.239:8000/updateOrder/?id=5913de90027d904812f1a75b
+
+{"restbucks11":{"coffee":"88Latte",
+	"milk":"88% milk",
+	"size": "tall88"
+}}
+
+DELETE:
+
+http://54.67.94.239:8000/deleteOrder/?id=5913de45027d904812f1a75a
+
+
+
+Host : sj
+
+GET:
+
+http://54.67.94.239:8000/getOrders
+
+POST:
+
+http://54.67.94.239:8000/createOrder1
+
+{"restbucks11":{"coffee":"Latte",
+	"milk":"2% milk",
+	"size": "tall"
+}}
+
+PUT:
+
+http://54.67.94.239:8000/updateOrder/?id=5913de90027d904812f1a75b
+
+{"restbucks11":{"coffee":"88Latte",
+	"milk":"88% milk",
+	"size": "tall88"
+}}
+
+DELETE:
+
+http://54.67.94.239:8000/deleteOrder/?id=5913de45027d904812f1a75a

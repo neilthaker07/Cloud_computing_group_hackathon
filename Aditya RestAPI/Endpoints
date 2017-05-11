@@ -1,0 +1,59 @@
+
+
+
+POST: http://ec2-54-67-23-66.us-west-1.compute.amazonaws.com:5000/
+{
+	"items":[
+		{
+			"id":1,
+			"milk":"No",
+			"size":"L",
+			"name":"lattee"
+		},
+		{
+			"id":2,
+			"milk":"No",
+			"size":"L",
+			"name":"coffee"
+		},
+		{
+			"id":3,
+			"milk":"yes",
+			"size":"M",
+			"name":"lattee"
+		}
+		
+		
+		],
+		
+	"status" : "order intiate",
+    "location" : "San Jose",
+    "message":"Order has been placed"
+}
+
+GET :
+USER : 
+http://ec2-54-67-23-66.us-west-1.compute.amazonaws.com:5000/orderid/{orderid} 
+http://ec2-54-67-23-66.us-west-1.compute.amazonaws.com:5000/orderid/{orderid}/itemid/{itemid} 
+example:
+http://ec2-54-67-23-66.us-west-1.compute.amazonaws.com:5000/orderid/5912e3ab3be6076f7890bf44
+http://ec2-54-67-23-66.us-west-1.compute.amazonaws.com:5000/orderid/all (for all user)
+http://ec2-54-67-23-66.us-west-1.compute.amazonaws.com:5000/orderid/5912e3ab3be6076f7890bf44/itemid/1
+
+PUT:
+for an order:
+http://ec2-54-67-23-66.us-west-1.compute.amazonaws.com:5000/orderid/{orderid}
+for an item:
+http://ec2-54-67-23-66.us-west-1.compute.amazonaws.com:5000/orderid/{orderid}/itemid/{itemid} 
+
+Delete:
+http://ec2-54-67-23-66.us-west-1.compute.amazonaws.com:5000/orderid/all
+http://ec2-54-67-23-66.us-west-1.compute.amazonaws.com:5000/orderid/{orderid}
+http://ec2-54-67-23-66.us-west-1.compute.amazonaws.com:5000/orderid/{orderid}/itemid/{itemid}
+
+DISHA:
+
+GET ALL ORDERS:
+http://54.219.185.120:3000/getOrders
+
+
