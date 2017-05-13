@@ -2,6 +2,7 @@
 
 Starbucks Web Portal   
 All team members worked on this. 
+Deployment on Heroku PaaS
 
 API Gateway  
 KONG API and 3 nodes Cassandra - Neil Thaker
