@@ -54,4 +54,12 @@ router.get('/change', function(req, res, next) {
   res.render('change', { title: 'Starbucks Orders' });
 });
 
+router.post('/remove', function(req, res, next) {
+	res.redirect('/remove');
+});
+
+router.get('/remove', function(req, res, next) {
+  res.render('remove', { title: 'Starbucks Orders' });
+});
+
 module.exports = router;
