@@ -2,5 +2,6 @@ Portal: Beanstalk Based Web Application from which Starbucks Orders and be place
 Orders are multi-tenant such that each tenant is a different Starbucks Store. The Portal development is shared among the team members.
 
 Implementation Technology : Node.js
+Interne Gateway: KONG API
 
 Portal makes all API requests to the API Gateway. 
