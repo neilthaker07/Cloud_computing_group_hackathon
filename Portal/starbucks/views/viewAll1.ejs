@@ -27,7 +27,7 @@
 
     <script src="/angularjs/restapp.js"></script>
 </head>
-<body ng-app="restbucks" ng-controller="sessioncheck">
+<body ng-app="restbucks" ng-controller="sessioncheck1">
 
 <!--Nav bar-->
 <nav class="navbar navbar-inverse navbar-fixed-top" style="height: 50px" >
@@ -98,35 +98,35 @@
 <!--Corousal end-->
 <div class="container-fluid" style="padding-top: 20px">
 
-        <div class="jumbotron col-md-12">
-<!--create panel-->
-<div class="row">
-<div class="col-md-offset-2 col-md-8" ng-repeat="x in orderlist">
-    <div class="panel panel-default" style="border-color: black">
-        <div class="panel-heading"><p ng-model="orderid"><b>ORDER : {{x.id}}</b></p></div>
-        <div class="panel-body">
-            <div class="row">
-                <!--<div class="col-md-6" style="text-align: center">{{x._id}}</div>-->
+    <div class="jumbotron col-md-12">
+        <!--create panel-->
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8" ng-repeat="x in orderlist">
+                <div class="panel panel-default" style="border-color: black">
+                    <div class="panel-heading"><p ng-model="orderid"><b>ORDER : {{x._id}}</b></p></div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <!--<div class="col-md-6" style="text-align: center">{{x._id}}</div>-->
 
-                <div style="text-align: center" ng-repeat="y in x.items">
-                    <div class="col-md-3">{{y.qty}}</div>
-                    <div class="col-md-3">{{y.name}}</div>
-                    <div class="col-md-3">{{y.milk}}</div>
-                    <div class="col-md-3">{{y.size}}</div>
+                            <div style="text-align: center" ng-repeat="y in x.items">
+                                <div class="col-md-3">{{y.qty}}</div>
+                                <div class="col-md-3">{{y.name}}</div>
+                                <div class="col-md-3">{{y.milk}}</div>
+                                <div class="col-md-3">{{y.size}}</div>
+                            </div>
+                            <!--<div class="col-md-3" style="text-align: center">{{x.prod_name}}</div>
+                            <div class="col-md-3" style="text-align: center">{{x.prod_cost}}</div>
+                            <div  class="col-md-3" style="text-align: center"><a href="/getItem?prod={{x.prod_name}}"> More details..</a></div>-->
+
+                        </div></div>
                 </div>
-                <!--<div class="col-md-3" style="text-align: center">{{x.prod_name}}</div>
-                <div class="col-md-3" style="text-align: center">{{x.prod_cost}}</div>
-                <div  class="col-md-3" style="text-align: center"><a href="/getItem?prod={{x.prod_name}}"> More details..</a></div>-->
+                <div class="col-md-offset-9" style="padding-bottom: 10px">
+                    <button type="button" class="btn btn-warning" style="margin-top:-10px" ng-click="deletefn(x._id)">DELETE</button>
+                    <button type="button" class="btn btn-success" style="margin-top:-10px" ng-click="updatefn(x._id)">UPDATE</button>
 
-            </div></div>
-    </div>
-    <div class="col-md-offset-9" style="padding-bottom: 10px">
-        <button type="button" class="btn btn-warning" style="margin-top:-10px" ng-click="deletefn(x.id)">DELETE</button>
-        <button type="button" class="btn btn-success" style="margin-top:-10px" ng-click="updatefn(x.id)">UPDATE</button>
-
-    </div>
-</div>
-    </div>
-</div></div>
+                </div>
+            </div>
+        </div>
+    </div></div>
 </body>
 </html>

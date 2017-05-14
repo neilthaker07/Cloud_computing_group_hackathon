@@ -32,9 +32,9 @@
             border-radius:0;
         }
     </style>
-    <script src="angularjs/restapp.js"></script>
+    <script src="/angularjs/restapp.js"></script>
 </head>
-<body ng-app="restbucks" ng-controller="restCtrl">
+<body ng-app="restbucks" ng-controller="updation">
 
 <!--Nav bar-->
 <nav class="navbar navbar-inverse navbar-fixed-top" style="height: 50px" >
@@ -163,7 +163,7 @@
                     <tbody>
 
                     <tr  ng-repeat="x in orders">
-                        <td>{{x.num}}</td>
+                        <td>{{x.qty}}</td>
                         <td>{{ x.name }}</td>
                         <td>{{ x.milk }}</td>
                         <td>{{ x.size }}</td>
@@ -175,7 +175,7 @@
                 <br/>
                 <br>
                 <div class="text-center">
-                    <button class="btn btn-success" ng-click="placeorder()" style="width: 70%">Place Order</button>
+                    <button class="btn btn-success" ng-click="updatefn()" style="width: 70%">Update Order</button>
                 </div>
 
 

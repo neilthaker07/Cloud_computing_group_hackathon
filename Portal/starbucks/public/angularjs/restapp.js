@@ -6,7 +6,6 @@ var restapp=angular.module("restbucks",[]);
 restapp.controller('restCtrl',['$scope','$http','$rootScope', function($scope,$http,$rootScope) {
     var i=1;
     $scope.orders=[];
-    window.alert("HI");
    // $scope.orders.push({'num':i,'name':'xyz','milk':$scope.order.milk,'size':$scope.order.size});
     $scope.addorder=function () {
         console.log($scope.order.name);
@@ -16,7 +15,6 @@ restapp.controller('restCtrl',['$scope','$http','$rootScope', function($scope,$h
     };
 
     $scope.placeorder=function () {
-        window.alert($scope.city);
         console.log($scope.orders);
         console.log($scope.orders.length);
         $http({
@@ -35,8 +33,14 @@ restapp.controller('restCtrl',['$scope','$http','$rootScope', function($scope,$h
             // this callback will be called asynchronously
             // when the response is available
             $scope.orders=[];
-
-           // window.location.assign('/');
+if($scope.city=="San Jose") {
+    window.location.assign('/v3/starbucks/orders/?location=' + $scope.city);
+    window.location.assign('/v3/starbucks/orders/?location=' + $scope.city);
+}
+else {
+    window.location.assign('/v3/starbucks/orders1/?location=' + $scope.city);
+    window.location.assign('/v3/starbucks/orders1/?location=' + $scope.city);
+}
         }, function errorCallback(response) {
             // called asynchronously if an error occurs
             // or server returns response with an error status.
@@ -44,8 +48,8 @@ restapp.controller('restCtrl',['$scope','$http','$rootScope', function($scope,$h
     }
 }]);
 
-restapp.controller('sessioncheck',['$scope','$http','$location',function($scope,$http,$location) {
-console.log("IN CONTROLLER");
+restapp.controller('sessioncheck',['$scope','$http','$location','$rootScope',function($scope,$http,$location,$rootScope) {
+console.log("IN CONTROLLER 1");
     $scope.orderlist=[];
     var s1 = $location.absUrl();
     var params = s1.split("?");
@@ -64,7 +68,7 @@ console.log("IN CONTROLLER");
         console.log(data);
         if (data.statusCode === 200) {
             $scope.orderlist=data.orders;
-            console.log(data);
+           // console.log(data.orders[0]._id+"   ---"+data.orders[0].location);
         }
         else {
             $scope.orderlist=[];
@@ -79,18 +83,107 @@ console.log("IN CONTROLLER");
         var r=window.confirm("DELETE ORDER : "+orderid+" ?");
         //$scope.orderlist=[];
         if(r==true)
-            window.location.assign("/deleteOrder/?id="+orderid);
-    }
+        {
+            $http({
+                method: "POST",
+                url: '/deleteOrder/?id='+orderid,
+                data: {
+                    location : parValue[1]
+                }
+            }).success(function (data) {
+                //console.log(JSON.stringify(data.category));//checking the response data for statusCode
+                console.log(data);
+                window.location.assign('/v3/starbucks/orders/?location='+parValue[1]);
+
+                if (data.statusCode === 200) {
+                    console.log(data);
+
+                }
+                else {
+                    console.log(data);
+
+                }
+                //Making a get call to the '/redirectToHomepage' API
+                //window.location.assign("/homepage");
+            }).error(function (error) {
+            });
+            //window.location.assign("/deleteOrder/?id="+orderid);
+    }};
     $scope.updatefn=function (orderid) {
-        //var r=window.confirm("DELETE ORDER : "+orderid+" ?");
+        $rootScope.location=parValue[1].replace("%20"," ");
+        window.location.assign("/updateOrder/?id="+orderid);
+    }
+}]);
+
+restapp.controller('sessioncheck1',['$scope','$http','$location','$rootScope',function($scope,$http,$location,$rootScope) {
+    console.log("IN CONTROLLER 2");
+    $scope.orderlist=[];
+    var s1 = $location.absUrl();
+    var params = s1.split("?");
+    console.log(params[1]);
+    var parValue = params[1].split("=");
+    console.log(parValue[1]);
+
+    $http({
+        method: "POST",
+        url: '/orders1',
+        data: {
+            location : parValue[1]
+        }
+    }).success(function (data) {
+        //console.log(JSON.stringify(data.category));//checking the response data for statusCode
+        console.log(data);
+        if (data.statusCode === 200) {
+            $scope.orderlist=data.orders;
+             console.log(data.orders[0]._id+"   ---"+data.orders[0].location);
+            console.log($scope.orderlist);
+        }
+        else {
+            $scope.orderlist=[];
+            console.log(data);
+
+        }
+        //Making a get call to the '/redirectToHomepage' API
+        //window.location.assign("/homepage");
+    }).error(function (error) {
+    });
+    $scope.deletefn=function (orderid) {
+        var r=window.confirm("DELETE ORDER : "+orderid+" ?");
         //$scope.orderlist=[];
-        //if(r==true)
+        if(r==true)
+        {
+            $http({
+                method: "POST",
+                url: '/deleteOrder/?id='+orderid,
+                data: {
+                    location : parValue[1]
+                }
+            }).success(function (data) {
+                //console.log(JSON.stringify(data.category));//checking the response data for statusCode
+                console.log(data);
+                window.location.assign('/v3/starbucks/orders1/?location='+parValue[1]);
+
+                if (data.statusCode === 200) {
+                    console.log(data);
+
+                }
+                else {
+                    console.log(data);
+
+                }
+                //Making a get call to the '/redirectToHomepage' API
+                //window.location.assign("/homepage");
+            }).error(function (error) {
+            });
+            //window.location.assign("/deleteOrder/?id="+orderid);
+        }};
+    $scope.updatefn=function (orderid) {
+        $rootScope.location=parValue[1].replace("%20"," ");
         window.location.assign("/updateOrder/?id="+orderid);
     }
 }]);
 
 restapp.controller('creation',function($scope,$http,$location) {
-    window.alert("CREATION C");
     var x={
         "location":"Palo Alto",
         "items":[
@@ -117,7 +210,6 @@ restapp.controller('creation',function($scope,$http,$location) {
             if (data.statusCode == 200) {
                 /*$scope.orderlist=data.orders;*/
                 console.log(data.id.insertedIds[0]);
-                window.alert("ORDER CREATED WITD ID : "+data.id.insertedIds[0]);
                 window.location.assign("/getOrders");
             }
             else {
@@ -132,28 +224,36 @@ restapp.controller('creation',function($scope,$http,$location) {
     }
 });
 
-restapp.controller('updation',function($scope,$http,$location) {
-    window.alert("INN");
+restapp.controller('updation',function($scope,$http,$location,$rootScope) {
     var s1 = $location.absUrl();
     var params = s1.split("?");
     console.log(params[1]);
     var parValue = params[1].split("=");
     console.log(parValue[1]);
     $scope.idv=parValue[1];
+    $scope.orders=[];
+    $scope.addorder=function () {
+        console.log($scope.order.name);
+        $scope.orders.push({'qty':1,'name':$scope.order.name,'milk':$scope.order.milk,'size':$scope.order.size});
+        $scope.order='';
+    };
+
+
     //var x=$location.search().id;
     $http({
         method: "POST",
         url: '/getOrder',
         data: {
-            id:parValue[1]
+            id:parValue[1],
+            location:"San%20Jose"
         }
     }).success(function (data) {
         //console.log(JSON.stringify(data.category));//checking the response data for statusCode
         console.log(data);
         if (data.statusCode == 200) {
-            //   $scope.orderlist=data.orders;
-            $scope.restbucks=data.order.items[0];
-            console.log(data);
+               $scope.order=data.orders.items[0];
+           // $scope.restbucks=data.order.items[0];
+            console.log(data.orders);
         }
         else {
             //  $scope.orderlist=[];
@@ -167,15 +267,19 @@ restapp.controller('updation',function($scope,$http,$location) {
 
 
     $scope.updatefn=function () {
-        window.alert("INN");
         console.log($scope.idv);
+        //console.log($scope.orders);
+        var x={"location":"San Jose","items":[{"qty":1,"name":"Latte","milk":"Whole milk","size":"Short 8oz"}]};
+        console.log("X");
+        console.log(x);
         //$scope.orderlist=[];
         $http({
             method: "POST",
             url: '/update',
             data: {
                 id : $scope.idv,
-                restbucks11:$scope.restbucks
+                restbucks11:x,
+                location:"San Jose"
             }
         }).success(function (data) {
             //console.log(JSON.stringify(data.category));//checking the response data for statusCode
@@ -183,8 +287,7 @@ restapp.controller('updation',function($scope,$http,$location) {
             if (data.statusCode == 200) {
                 /*$scope.orderlist=data.orders;*/
                 console.log(data.order);
-                window.alert("ORDER UPDATED WITD ID : "+data);
-                window.location.assign("/getOrders");
+                window.location.assign('/v3/starbucks/orders');
             }
             else {
                 /* $scope.orderlist=[];
