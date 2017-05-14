@@ -106,9 +106,9 @@ class Index(Resource):
 
 api = Api(app)
 #api.add_resource(Index, "/", endpoint="index")
-api.add_resource(orders, "/", endpoint="orders")
-api.add_resource(orders, "/orderid/<string:orderid>", endpoint="orderid")
-api.add_resource(orders, "/orderid/<string:orderid>/itemid/<string:itemid>", endpoint="itemid")
+api.add_resource(orders, "/v3/starbucks/order/", endpoint="orders")
+api.add_resource(orders, "/v3/starbucks/order/orderid/<string:orderid>", endpoint="orderid")
+api.add_resource(orders, "/v3/starbucks/order/orderid/<string:orderid>/itemid/<string:itemid>", endpoint="itemid")
 
 
 if __name__ == "__main__":
