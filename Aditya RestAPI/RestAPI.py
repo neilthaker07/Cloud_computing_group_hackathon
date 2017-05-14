@@ -10,7 +10,7 @@ app.config['MONGO_HOST'] = 'ec2-54-193-83-16.us-west-1.compute.amazonaws.com'
 app.config['MONGO_PORT'] = 27017
 app.config["MONGO_DBNAME"] = "orders_db"
 mongo = PyMongo(app, config_prefix='MONGO')
-APP_URL = "ec2-54-67-23-66.us-west-1.compute.amazonaws.com:5000"
+APP_URL = "ec2-54-67-23-66.us-west-1.compute.amazonaws.com:3000"
 
 
 class orders(Resource):
