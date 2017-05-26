@@ -12,7 +12,7 @@ https://cmpe281-stabucks.herokuapp.com/
 KONG API and 3 nodes Cassandra Cluster - Neil Thaker
 
 ## Tenant REST API Backends   
-San Francisco tenant -  Aditya Parmar - Python  
-Palo Alto tenant -  Disha Sheth  - nodejs   
-San Jose tenant - Harsh Mehta  - java restlet 
+San Francisco tenant -  Aditya Parmar - Python - 3 nodes mongodb cluster 
+Palo Alto tenant -  Disha Sheth  - nodejs - 3 nodes mongodb cluster    
+San Jose tenant - Harsh Mehta  - java restlet -  3 nodes mongodb cluster  
 
