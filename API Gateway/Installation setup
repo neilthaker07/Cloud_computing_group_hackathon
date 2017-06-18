@@ -1,3 +1,5 @@
+JAVA installation
+-------------------------
 sudo apt-get update
 sudo apt-get install default-jre
 sudo apt-get install default-jdk
@@ -12,6 +14,8 @@ JAVA_HOME="/usr/lib/jvm/java-8-oracle"
 source /etc/environment
 echo $JAVA_HOME
 
+Apache Cassandra installation
+-----------------------------------
 wget http://supergsego.com/apache/cassandra/3.10/apache-cassandra-3.10-bin.tar.gz
 tar zxvf apache-cassandra-3.10-bin.tar.gz
 
